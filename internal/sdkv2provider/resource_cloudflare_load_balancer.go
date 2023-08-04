@@ -185,6 +185,7 @@ func resourceCloudflareLoadBalancerUpdate(ctx context.Context, d *schema.Resourc
 		loadBalancer.CountryPools = expandedCountryPools
 	}
 
+	loadBalancer.PopPools = map[string][]string{}
 	if popPools, ok := d.GetOk("pop_pools"); ok {
 		expandedPopPools, err := expandGeoPools(popPools, "pop")
 		if err != nil {
